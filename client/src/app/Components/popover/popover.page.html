@@ -1,0 +1,10 @@
+
+
+<ion-content [fullscreen]="true" >
+  <ion-item  lines="none" *ngFor="let item of countries">
+    
+    <ion-label (click)="navigate(item)">
+  {{item}}
+    </ion-label>
+  </ion-item>
+</ion-content>

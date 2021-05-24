@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'popover',
+    loadChildren: () => import('./Components/popover/popover.module').then( m => m.PopoverPageModule)
+  },
+  {
+    path: 'cases/:country',
+    loadChildren: () => import('./Pages/cases/cases.module').then( m => m.CasesPageModule)
+  },
 ];
 
 @NgModule({

@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  COUNTRIES_API : 'https://api.covid19api.com',
+  COVID_API : 'https://covid-api.mmediagroup.fr/v1'
+
 };
 
 /*

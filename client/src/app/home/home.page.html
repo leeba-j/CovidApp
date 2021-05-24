@@ -1,20 +1,111 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header *ngIf="GlobalSummary" class="ion-no-border" [translucent]="true">
+  <ion-toolbar >
+    <ion-avatar>
+      <img src="https://www.nortonrosefulbright.com/-/media/images/nrf/thought-leadership/us/us-state-of-the-union-covid-19-now.jpg?la=en-af&revision=e4467f9a-da2f-45b0-9fe9-cc206009341d&hash=B3754931123B365860A42D64B706BD446AA88316">
+    
+    </ion-avatar>
+    
   </ion-toolbar>
+  <ion-toolbar id="toolBar" class="d-flex justify-content-end align-items-center" (click)="presentPopover($event)">
+      <ion-icon color="primary" id="web" size="large" name="globe-outline"></ion-icon>
+      <ion-icon color="medium" slot="end" name="chevron-down-outline"></ion-icon>  </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true" *ngIf="!GlobalSummary" >
+   
+    <ion-spinner ></ion-spinner>
 </ion-content>
+ <ion-button *ngIf="GlobalSummary">
+  <ion-icon name="arrow-forward-outline"></ion-icon>
+</ion-button>
+<ion-content id="global" [fullscreen]="true" *ngIf="GlobalSummary">
+  <h2> Global Spread Stats</h2>
+  <ion-card id="first">
+  
+    <ion-card-content>
+      <ion-grid>
+        <ion-row size="8">
+          <ion-col>
+            How to stop spread of Covid-19
+          </ion-col>
+          <ion-col size="4">
+            <img src="https://combatcovid.hhs.gov/sites/default/files/inline-images/Covid-illustration-552px_0.png" alt="">
+
+          </ion-col>
+          
+        </ion-row>
+  </ion-grid>
+    </ion-card-content>
+   
+  </ion-card>
+
+  <ion-grid id="grid">
+    <ion-row>
+      <ion-col>
+        <ion-card id="babies">
+          <ion-card-header>
+            <ion-card-subtitle>New Cases</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+           {{GlobalSummary.NewConfirmed}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card id="babies">
+          <ion-card-header>
+            <ion-card-subtitle>New Deaths</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{GlobalSummary.NewDeaths}}
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card id="babies">
+          <ion-card-header>
+            <ion-card-subtitle>Total Cases </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <i class='fa fa-user-plus'></i>
+           {{GlobalSummary.TotalConfirmed}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card id="babies">
+          <ion-card-header>
+            <ion-card-subtitle>Total Deaths </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <i class='fa fa-hands'></i>
+            {{GlobalSummary.TotalDeaths}}
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12">
+        <ion-card id="babies">
+          <ion-card-header>
+            <ion-card-subtitle>Total Recoveries             
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <i class="fa fa-heartbeat" ></i>
+            {{GlobalSummary.TotalRecovered}}
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
