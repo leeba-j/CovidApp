@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
 import { ServerService } from 'src/app/Services/server.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ServerService } from 'src/app/Services/server.service';
 })
 export class PopoverPage implements OnInit {
 
-  constructor(private serverService: ServerService, private router: Router) { }
+  constructor(private serverService: ServerService, private router: Router, private popover: PopoverController) { }
   countries = new Array();
   data: any;
   ngOnInit() {
@@ -32,6 +33,7 @@ getAllCountries(){
 navigate(country){
 this.router.navigate([`cases/${country}`])
   this.serverService.getOneCountryStats(country);
+  this.popover.dismiss();
 }
 
 }

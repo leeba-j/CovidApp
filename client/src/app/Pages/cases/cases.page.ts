@@ -13,34 +13,34 @@ export class CasesPage implements OnInit {
     private serverService: ServerService,
     private storage: Storage,
     private router: Router
-  ) {
-    this.getCountryData();
+  ) {}
 
-  }
-
-  countryData : any;
+  countryData: any;
+  localStorage: number;
+  countryName: string;
+  recovered: string;
+  confirmed:string;
+  deaths: string;
 
   ngOnInit() {
-  
-    
+    this.storage.create();
+    this.storage.set('country', this.serverService.countryName);
+    this.getCountryData();
   }
-
-  async close() {
-    this.serverService.clearLocalStorage();
+  close() {
     this.router.navigate(['/home']);
+    this.storage.clear();
   }
 
-  async getCountryData(){
-    //  this.countryData = await this.storage.get('country');
-    //  console.log(this.countryData);
-    //  console.log("Lol",this.countryData);
-console.log("In getcountrydata")
-setTimeout(async ()=>{
-  this.serverService.getLocalStorageData();
-
- this.countryData = await this.serverService.count;
- console.log(this.countryData)
-},2000)
-
+  async getCountryData() {
+    this.serverService
+      .getOneCountryStats(this.serverService.countryName)
+      .subscribe((data) => {
+        this.countryData = data['All'];
+        this.countryName = this.countryData['country'];
+        this.recovered = this.countryData['recovered'];
+        this.confirmed = this.countryData['confirmed'];
+        this.deaths = this.countryData['deaths'];
+      });
   }
 }

@@ -1,12 +1,37 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Cases</ion-title>
-    <ion-icon (click)="close()" size="large" slot="end" name="close-outline"></ion-icon>
+    <ion-title *ngIf="countryData" >{{countryName}} Cases</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-<ion-button (click)="getCountryData()">
-
+<ion-button (click)="close()">
+  <ion-icon size="large" slot="end" name="close-outline"></ion-icon>
 </ion-button>
+<ion-content class="ion-content">
+  <div class="container">
+    <img src="https://lh3.googleusercontent.com/proxy/UbBEsoPlhlPwwS9WhF0v7Q8HqdPgJ3mmJPaDX0uh8YPOgHeeE0M1v2GH2f_BNePeJopTxjLMUjcAPyCqCuaFulR-QNf__Lm7iiz6CgAPDk6U5LSkGsE" alt="" srcset="">
+  </div>
+  <ion-card>
+    <ion-card-content *ngIf="countryData">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h1>{{confirmed}}</h1>
+            <p>Confirmed</p>
+          </ion-col>
+          <ion-col>
+            <h1>{{recovered}}</h1>
+            <p>Recovered</p>
+          </ion-col>
+          <ion-col>
+            <h1>{{deaths}}</h1>
+            <p>Deaths</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card-content *ngIf="!countryData">
+      <ion-spinner name="crescent"></ion-spinner>
+      <h1>No data to show</h1>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
